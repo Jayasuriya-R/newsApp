@@ -7,15 +7,17 @@ import LatestNews from "../screens/LatestNews";
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
-const navigationController =  () =>{
+const NavigationController = () => {
     return <NavigationContainer>
-
+        <TabNavigators />
     </NavigationContainer>
 }
 
-const tabNavigation = () =>{
-    return <Tab.Navigator>
-        <Tab.Screen name="latestNews" component={<AllNews/>}/>
-        <Tab.Screen name="AllNews" component={<LatestNews/>}/>
+const TabNavigators = () => {
+    return <Tab.Navigator screenOptions={{headerShown:"false"}}>
+        <Tab.Screen name="latestNews" component={AllNews} />
+        <Tab.Screen name="AllNews" component={LatestNews} />
     </Tab.Navigator>
 }
+
+export default NavigationController
