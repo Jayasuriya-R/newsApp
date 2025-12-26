@@ -1,11 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import generateFakeNews from '../data/FakeNews'
+import NewsItem from '../components/NewsItem'
 
 const LatestNews = () => {
+  const news = generateFakeNews(8);
   return (
-    <View>
-      <Text>LatestNews</Text>
-    </View>
+    <SafeAreaProvider>
+      <FlatList
+        data={news}
+        keyExtractor={(item)=> item.id}
+        renderItem={({ item }) => (<NewsItem {...item} />)}
+      />
+    </SafeAreaProvider>
   )
 }
 
