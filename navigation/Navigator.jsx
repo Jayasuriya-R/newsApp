@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AllNews from "../screens/AllNews";
 import LatestNews from "../screens/LatestNews";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import NewsDetail from "../components/NewsDetail";
 
 
 const Tab = createBottomTabNavigator()
@@ -17,7 +18,7 @@ const NavigationController = () => {
 
 const TabNavigators = () => {
     return <Tab.Navigator  screenOptions={({ route }) => ({
-    headerShown: false,   
+       
     tabBarIcon: ({ focused, color, size }) => {
       let iconName;
 
@@ -30,9 +31,25 @@ const TabNavigators = () => {
       return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
     }
   })}>
-        <Tab.Screen name="latestNews" component={LatestNews} />
-        <Tab.Screen name="AllNews" component={AllNews} />
+        <Tab.Screen name="latestNews" component={LatestNewsStack} options={{ headerShown: false }}/>
+        <Tab.Screen name="AllNews" component={AllNewsStack}  options={{ headerShown: false }}/>
     </Tab.Navigator>
 }
 
+const LatestNewsStack = ()=>{
+  return <Stack.Navigator>
+    <Stack.Screen name='latestNews' component={LatestNews}/>
+    <Stack.Screen name="newsDetail" component={NewsDetail}/>
+    
+  </Stack.Navigator>
+}
+
+const AllNewsStack = ()=>{
+  return <Stack.Navigator>
+    <Stack.Screen name='AllNews' component={AllNews}/>
+    <Stack.Screen name="newsDetail" component={NewsDetail}/>
+    
+  </Stack.Navigator>
+}
+ 
 export default NavigationController
